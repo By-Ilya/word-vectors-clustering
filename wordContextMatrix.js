@@ -1,7 +1,7 @@
 const {windowSize} = require('./config');
 
 calculateWordContextMatrix = (vocabulary, lemmas, isPMI = false) => {
-    console.log(`Calculating WordContextMatrix with h = ${h}...`);
+    console.log(`Calculating WordContextMatrix with h = ${windowSize}...`);
 
     let wordContextMatrix = initializeWordContextMatrix(vocabulary.length);
 
