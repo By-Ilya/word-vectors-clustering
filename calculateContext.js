@@ -1,8 +1,8 @@
 const calculateCosineDistance = require('./helpers/cosineDistance');
 
 
-calculateContext = (vocabulary, wordContextMatrix) => {
-    console.log(`Calculating context for each word...`);
+calculateProbableContext = (vocabulary, wordContextMatrix) => {
+    console.log(`Calculating probable context for each word...`);
     let wordContextMap = new Map();
     for (let i = 0; i < wordContextMatrix.length; i++) {
         let context = [];
@@ -32,4 +32,4 @@ compareCosineValues = (a, b) => {
 };
 
 
-module.exports = calculateContext;
+module.exports = calculateProbableContext;

@@ -70,11 +70,14 @@ getTokensFromDocuments = async (corpusDirectory, documentsList) => {
 };
 
 getLemmasFromTokens = tokens => {
-    console.log('Getting lemmas from tokens without stop words...');
+    console.log('Getting lemmas from tokens without stop words and single character words...');
     return tokens
         .map(token => lemmatizer(token))
         .filter(lemma =>
             stopwords.english.indexOf(lemma) === -1
+        )
+        .filter(lemma =>
+            lemma.length > 1
         );
 };
 

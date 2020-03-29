@@ -1,7 +1,7 @@
 const {corpusDirectory} = require('./config');
 const readCorpus = require('./processCorpus');
 const calculateWordContextMatrix = require('./wordContextMatrix');
-const calculateContext = require('./calculateContext');
+const calculateProbableContext = require('./calculateContext');
 const createXmlFile = require('./createXml');
 
 let CORPUS_DATA = {
@@ -20,7 +20,7 @@ run = async () => {
             CORPUS_DATA.vocabulary, CORPUS_DATA.lemmas, true
         );
 
-        const wordContextMap = calculateContext(
+        const wordContextMap = calculateProbableContext(
             CORPUS_DATA.vocabulary, WORD_CONTEXT_MATRIX
         );
 
