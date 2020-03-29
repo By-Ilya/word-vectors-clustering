@@ -60,7 +60,9 @@ calculateSmoothedPMIMatrix = (wordContextMatrix, vocabularySize) => {
     return pmiContextMatrix;
 };
 
-calculateSmoothedPMIValue = (fij, sumOverWordAlpha, sumOverContext, skipGramsSum) => {
+calculateSmoothedPMIValue = (
+    fij, sumOverWordAlpha, sumOverContext, skipGramsSum
+) => {
     const Pwc = fij / skipGramsSum;
     const Pw = sumOverContext / skipGramsSum;
     const Pca = sumOverWordAlpha / skipGramsSum;
