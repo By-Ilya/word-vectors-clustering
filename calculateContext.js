@@ -6,16 +6,18 @@ calculateProbableContext = (vocabulary, wordContextMatrix) => {
     let wordContextMap = new Map();
     for (let i = 0; i < wordContextMatrix.length; i++) {
         let context = [];
-        for (let j = i + 1; j < wordContextMatrix.length; j++) {
-            const cosineValue = calculateCosineDistance(
-                wordContextMatrix[i],
-                wordContextMatrix[j]
-            );
-            if (cosineValue !== 0) {
-                context.push({
-                    word: `${vocabulary[j]}`,
-                    cosineValue
-                });
+        for (let j = 0; j < wordContextMatrix.length; j++) {
+            if (i !== j) {
+                const cosineValue = calculateCosineDistance(
+                    wordContextMatrix[i],
+                    wordContextMatrix[j]
+                );
+                if (cosineValue !== 0) {
+                    context.push({
+                        word: `${vocabulary[j]}`,
+                        cosineValue
+                    });
+                }
             }
         }
         wordContextMap.set(
