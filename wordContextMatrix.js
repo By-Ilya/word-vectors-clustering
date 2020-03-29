@@ -1,23 +1,24 @@
+const {windowSize} = require('./config');
+
 calculateWordContextMatrix = (vocabulary, lemmas, isPMI = false) => {
-    const h = 3;
     console.log(`Calculating WordContextMatrix with h = ${h}...`);
 
     let wordContextMatrix = initializeWordContextMatrix(vocabulary.length);
 
     for (let i = 0; i < lemmas.length; i++) {
-        for (let j = i - h; j < i; j++) {
+        for (let j = i - windowSize; j < i; j++) {
             if (j >= 0) {
-                const rowIndex = vocabulary.indexOf(lemmas[i]);
-                const columnIndex = vocabulary.indexOf(lemmas[j]);
-                wordContextMatrix[rowIndex][columnIndex] += 1;
+                const currentWordIndex = vocabulary.indexOf(lemmas[i]);
+                const contextWordIndex = vocabulary.indexOf(lemmas[j]);
+                wordContextMatrix[currentWordIndex][contextWordIndex] += 1;
             }
         }
 
-        for (let j = i + 1; j <= i + h; j++) {
+        for (let j = i + 1; j <= i + windowSize; j++) {
             if (j < lemmas.length) {
-                const rowIndex = vocabulary.indexOf(lemmas[i]);
-                const columnIndex = vocabulary.indexOf(lemmas[j]);
-                wordContextMatrix[rowIndex][columnIndex] += 1;
+                const currentWordIndex = vocabulary.indexOf(lemmas[i]);
+                const contextWordIndex = vocabulary.indexOf(lemmas[j]);
+                wordContextMatrix[currentWordIndex][contextWordIndex] += 1;
             }
         }
     }
