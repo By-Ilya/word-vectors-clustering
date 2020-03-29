@@ -45,10 +45,12 @@ calculateSmoothedPMIMatrix = (wordContextMatrix, vocabularySize) => {
     for (let i = 0; i < wordContextMatrix.length; i++) {
         const sumOverWordAlpha = getSumOverWordAlpha(wordContextMatrix[i]);
         for (let j = 0; j < wordContextMatrix[i].length; j++) {
-            const Pwc = wordContextMatrix[i][j] / skipGramsSum;
-            const Pw = sumOverContexts[j] / skipGramsSum;
-            const Pca = sumOverWordAlpha / skipGramsSum;
-            const smoothedPMI = Math.log2(Pwc / (Pw * Pca));
+            const smoothedPMI = calculateSmoothedPMIValue(
+                wordContextMatrix[i][j],
+                sumOverContexts[j],
+                sumOverWordAlpha,
+                skipGramsSum
+            );
 
             pmiContextMatrix[i][j] = Math.max(0, smoothedPMI);
         }
@@ -56,6 +58,14 @@ calculateSmoothedPMIMatrix = (wordContextMatrix, vocabularySize) => {
 
 
     return pmiContextMatrix;
+};
+
+calculateSmoothedPMIValue = (fij, sumOverWordAlpha, sumOverContext, skipGramsSum) => {
+    const Pwc = fij / skipGramsSum;
+    const Pw = sumOverContext / skipGramsSum;
+    const Pca = sumOverWordAlpha / skipGramsSum;
+
+    return Math.log2(Pwc / (Pw * Pca));
 };
 
 getSkipGramsSum = (wordContextMatrix) => {
