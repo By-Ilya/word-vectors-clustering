@@ -37,7 +37,7 @@ createXmlContext = (xmlHeader, data) => {
 createXmlWord = (xmlContext, data) => {
     const wordElemAttributes = {
         'type': 'word',
-        'cosine': data.cosineValue
+        'similarity': data.similarity
     };
     return xmlContext.ele(
         XML_PROPS.wordTag,
