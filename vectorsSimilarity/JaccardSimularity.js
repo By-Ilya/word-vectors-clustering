@@ -1,4 +1,4 @@
-calculateJaccardSimilarity = (wordVector1, wordVector2) => {
+let calculateJaccardSimilarity = (wordVector1, wordVector2) => {
     if (wordVector1.length !== wordVector2.length) return 0;
 
     let numerator = 0;

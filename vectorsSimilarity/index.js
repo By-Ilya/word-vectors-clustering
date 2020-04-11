@@ -1,12 +1,12 @@
 const calculateCosineDistance = require('./cosineDistance');
 const calculateJaccardSimilarity = require('./JaccardSimularity');
-const calculateKullbackLeiblerDivergence = require('./KullbackLeiblerDivergence');
-const calculateJensenShannonDivergence = require('./JensenShannonDivergence');
+const calculateKLDivergence = require('./KLDivergence');
+const calculateJSDivergence = require('./JSDivergence');
 
 
 module.exports = {
     calculateCosineDistance,
     calculateJaccardSimilarity,
-    calculateKullbackLeiblerDivergence,
-    calculateJensenShannonDivergence
+    calculateKLDivergence,
+    calculateJSDivergence
 };

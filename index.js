@@ -4,8 +4,8 @@ const calculateWordContextMatrix = require('./wordContextMatrix');
 const {
     calculateCosineDistance,
     calculateJaccardSimilarity,
-    calculateKullbackLeiblerDivergence,
-    calculateJensenShannonDivergence
+    calculateKLDivergence,
+    calculateJSDivergence
 } = require('./vectorsSimilarity/index');
 const calculateProbableContext = require('./calculateContext');
 const createXmlFile = require('./createXml');
@@ -67,10 +67,10 @@ chooseSimilarityAlgorithm = (algorithmArgument) => {
             return calculateJaccardSimilarity;
         case 3:
             console.log(`Chosen Kullback-Leibler divergence algorithm...`);
-            return calculateKullbackLeiblerDivergence;
+            return calculateKLDivergence;
         case 4:
             console.log(`Chosen Jensen-Shannon divergence algorithm...`);
-            return calculateJensenShannonDivergence;
+            return calculateJSDivergence;
         default:
             console.log(`${algorithmArgument} doesn't identified with any algorithm.`);
             console.log(`Using cosine similarity algorithm as default...`);

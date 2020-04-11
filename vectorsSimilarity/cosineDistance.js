@@ -1,4 +1,4 @@
-calculateCosineDistance = (wordVector1, wordVector2) => {
+let calculateCosineDistance = (wordVector1, wordVector2) => {
     if (wordVector1.length !== wordVector2.length) return 0;
 
     let dotProd = 0;
