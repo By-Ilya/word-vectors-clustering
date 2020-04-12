@@ -1,5 +1,7 @@
+const MIN_SIMILARITY = 0;
+
 let calculateJaccardSimilarity = (wordVector1, wordVector2) => {
-    if (wordVector1.length !== wordVector2.length) return 0;
+    if (wordVector1.length !== wordVector2.length) return MIN_SIMILARITY;
 
     let numerator = 0;
     let denominator = 0;

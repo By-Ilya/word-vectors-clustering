@@ -1,5 +1,5 @@
-calculateProbableContext = (
-    vocabulary, wordContextMatrix, similarityFunction
+let calculateProbableContext = (
+    vocabulary, wordContextMatrix, similarityFunction, metricsSortRule
 ) => {
     console.log(`Calculating probable context for each word...`);
     let wordContextMap = new Map();
@@ -21,15 +21,11 @@ calculateProbableContext = (
         }
         wordContextMap.set(
             vocabulary[i],
-            context.sort(compareSimilarities)
+            context.sort(metricsSortRule)
         );
     }
 
     return wordContextMap;
-};
-
-compareSimilarities = (a, b) => {
-    return b.similarity - a.similarity;
 };
 
 

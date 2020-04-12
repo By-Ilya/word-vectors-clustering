@@ -4,7 +4,6 @@ const calculateWordContextMatrix = require('./wordContextMatrix');
 const {
     calculateCosineDistance,
     calculateJaccardSimilarity,
-    calculateKLDivergence,
     calculateJSDivergence
 } = require('./vectorsSimilarity/index');
 const calculateProbableContext = require('./calculateContext');
@@ -29,11 +28,15 @@ run = async () => {
                 CORPUS_DATA.vocabulary, CORPUS_DATA.lemmas, true
             );
 
-            const similarityFunction = chooseSimilarityAlgorithm(
-                parseInt(args[0])
-            );
+            const {
+                similarityFunction,
+                metricsSortRule
+            } = chooseSimilarityAlgorithm(parseInt(args[0]));
             const wordContextMap = calculateProbableContext(
-                CORPUS_DATA.vocabulary, WORD_CONTEXT_MATRIX, similarityFunction
+                CORPUS_DATA.vocabulary,
+                WORD_CONTEXT_MATRIX,
+                similarityFunction,
+                metricsSortRule
             );
 
             await createXmlFile('wordsContext', wordContextMap);
@@ -61,22 +64,38 @@ chooseSimilarityAlgorithm = (algorithmArgument) => {
     switch (algorithmArgument) {
         case 1:
             console.log(`Chosen cosine similarity algorithm...`);
-            return calculateCosineDistance;
+            return {
+                similarityFunction: calculateCosineDistance,
+                metricsSortRule: compareSimilarities
+            };
         case 2:
             console.log(`Chosen Jaccard similarity algorithm...`);
-            return calculateJaccardSimilarity;
+            return {
+                similarityFunction: calculateJaccardSimilarity,
+                metricsSortRule: compareSimilarities
+            };
         case 3:
-            console.log(`Chosen Kullback-Leibler divergence algorithm...`);
-            return calculateKLDivergence;
-        case 4:
             console.log(`Chosen Jensen-Shannon divergence algorithm...`);
-            return calculateJSDivergence;
+            return {
+                similarityFunction: calculateJSDivergence,
+                metricsSortRule: compareDivergences
+            };
         default:
             console.log(`${algorithmArgument} doesn't identified with any algorithm.`);
             console.log(`Using cosine similarity algorithm as default...`);
-            return calculateCosineDistance;
+            return {
+                similarityFunction: calculateCosineDistance,
+                metricsSortRule: compareSimilarities
+            };
     }
 };
 
+compareSimilarities = (a, b) => {
+    return b.similarity - a.similarity;
+};
+
+compareDivergences = (a, b) => {
+    return a.similarity - b.similarity;
+}
 
 run();
