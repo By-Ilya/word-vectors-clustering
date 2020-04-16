@@ -42,17 +42,18 @@ See the result in the configured `OUTPUT_FOLDER` directory.
 ## Output example
 As the output you get an `OUTPUT_FOLDER/wordsContext.xml` file in such format:
 
-`<?xml version="1.0"?>
-<document name="wordsContext">
-  <context type="contextWords" word="...">
-    <word type="word" similarity="...">...</word>
-    <word type="word" simularity="...">...</word>
-    ...
-  </context>
-  <context type="contextWords" word="...">
-  	...
-  </context>
-</document>`
+    <?xml version="1.0"?>
+    <document name="wordsContext">
+        <context type="contextWords" word="...">
+            <word type="word" similarity="...">...</word>
+            <word type="word" simularity="...">...</word>
+            ...
+        </context>
+        <context type="contextWords" word="...">
+            ...
+        </context>
+        ...
+    </document>
 
 ## Used `Node JS` libraries
 - `natural` (version `0.6.3`) is used for _tokenizing_ input texts from corpus to words.
