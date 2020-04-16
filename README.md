@@ -59,5 +59,5 @@ As the output you get an `OUTPUT_FOLDER/wordsContext.xml` file in such format:
 - `natural` (version `0.6.3`) is used for _tokenizing_ input texts from corpus to words.
 - `stopwords` (version `0.0.9`) is used to _remove stopwords_ from corpus.
 - `lemmatizer` (version `0.0.1`) is used for _creating lemmas_ from words.
-- `xmlbuilder` (version `15.1.0`) is used for _creting XML-file_ with context words.
+- `xmlbuilder` (version `15.1.0`) is used for _creating XML-file_ with context words.
 
